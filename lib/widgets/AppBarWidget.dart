@@ -2,12 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget {
-  const AppBarWidget({super.key});
+  const AppBarWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.cyanAccent[700],
+        borderRadius: BorderRadius.circular(25),
+      ),
+      padding: EdgeInsets.symmetric(vertical: 9, horizontal: 9),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

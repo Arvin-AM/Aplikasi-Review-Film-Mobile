@@ -6,8 +6,13 @@ import 'package:tugas_mobile/widgets/Kategoriwidget.dart';
 import 'package:tugas_mobile/widgets/PopulerWidget.dart';
 import 'package:tugas_mobile/widgets/TerbaruWidget.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,17 +53,17 @@ class HomePage extends StatelessWidget {
                           horizontal: 15,
                         ),
                         child: TextFormField(
+                          controller: _searchController,
+                          onChanged: (value) {
+                            // setState diperlukan untuk memberitahu Flutter bahwa state telah berubah
+                            setState(() {});
+                          },
                           decoration: InputDecoration(
                               hintText: "Silahkan cari apa yang anda cari",
                               border: InputBorder.none),
                         ),
                       ),
                     ),
-                    Container(
-                      child: Icon(Icons.mic_outlined),
-                      height: 30,
-                      width: 10,
-                    )
                   ],
                 ),
               ),
@@ -76,7 +81,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
 
-          Kategoriwidget(),
+          KategoriWidget(),
 
           // Populer item
           Padding(
@@ -103,7 +108,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
 
-          TerbaruWidget(),
+          TerbaruWidget(searchQuery: _searchController.text),
         ],
       ),
       drawer: DrawerWidget(),
